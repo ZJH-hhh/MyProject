@@ -3,6 +3,7 @@ from rest_framework. response import Response
 from rest_framework.permissions import IsAuthenticated
 from app.models.UserInfo import Users
 from app.models.jobs import Jobs
+from django.contrib.auth.models import User
 
 
 class InfoView(APIView):
@@ -11,25 +12,12 @@ class InfoView(APIView):
     def get(self, request):
         try:
             user_id = int(request.GET.get('user_id', 1))
-            user = Users.objects.get(user_id=user_id)
-            # user = Jobs.objects.get(id=user_id)
-            # print(user)
+            user = User.objects.get(id=user_id)
             return Response({
-                # 'id': user.id,
-                'username': user.user.username,
-                'photo': user.photo,
+                'username': user.username,
+                'email': user.email,
             })
-        except:
+        except Exception as e:
             return Response({
-                'result': "输入参数错误",
+                'result': str(e)
             })
-
-# from rest_framework import viewsets
-
-# from app.models.UserInfo import User
-# from app.serializer import UsersSerializer
-
-
-# class UsersViewSet(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UsersSerializer

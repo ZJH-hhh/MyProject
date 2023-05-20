@@ -18,6 +18,12 @@ export default {
 
 <style scoped>
 .container {
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    background-color: #E4F3F5;
 }
 </style>

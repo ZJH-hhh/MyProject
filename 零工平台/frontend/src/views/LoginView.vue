@@ -1,5 +1,6 @@
 <template>
-    <ContentBase>
+    <div class="login">
+        <img src="https://img01.sc115.com/uploads3/sc/jpgs/2007/apic26734_sc115.com.jpg" alt="">
         <div class="row justify-content-md-center">
             <div class="col-4">
                 <form @submit.prevent="login">
@@ -12,23 +13,22 @@
                         <input v-model="password" type="password" class="form-control" id="password">
                     </div>
                     <div class="error-message">{{ error_message }}</div>
-                    <button type="submit" class="btn btn-primary">登录</button>
+                    <button type="submit" class="btn btn-primary login-btn">登录</button>
+                    <a class="register-btn" href="/gigplatform/register/">注册</a>
                 </form>
             </div>
         </div>
-    </ContentBase>
+    </div>
 </template>
 
 <script>
 import { ref } from 'vue';
 import { useStore } from 'vuex';
-import ContentBase from '../components/ContentBase';
 import router from '@/router/index';
 
 export default {
     name: 'LoginView',
     components: {
-        ContentBase,
     },
     setup() {
         const store = useStore();
@@ -61,11 +61,40 @@ export default {
 </script>
 
 <style scoped>
-button {
+.login-btn {
     width: 100%;
+}
+
+.register-btn {
+    margin-top: 10px;
+    float: right;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+img {
+    width: 100vw;
+    height: 100vh;
 }
 
 .error-message {
     color: red;
+}
+
+.login {
+    position: relative;
+    display: inline-block;
+}
+
+.justify-content-md-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

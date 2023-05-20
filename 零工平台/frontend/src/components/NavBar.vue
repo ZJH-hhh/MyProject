@@ -11,10 +11,10 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="">首页</a>
+                        <router-link class="nav-link" href="/gigplatform/" :to="{ name: 'home' }">首页</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">工作列表</a>
+                        <router-link class="nav-link" :to="{ name: 'jobs', params: { 'jobname': 'all' } }">职位</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">发布工作</a>
@@ -22,15 +22,16 @@
                 </ul>
                 <ul class="navbar-nav" v-if="!$store.state.user.is_login">
                     <li class="nav-item">
-                        <a class="nav-link" href="/gigplatform/login/">登录</a>
+                        <router-link class="nav-link" href="/gigplatform/login/" :to="{ name: 'login' }">登录</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/gigplatform/register/">注册</a>
+                        <router-link class="nav-link" href="/gigplatform/register/"
+                            :to="{ name: 'register' }">注册</router-link>
                     </li>
                 </ul>
                 <ul class="navbar-nav" v-else>
                     <li class="nav-item">
-                        <a class="nav-link" href="/gigplatform/login/">{{ $store.state.user.userid }}</a>
+                        <router-link class="nav-link" :to="{ name: 'login' }">{{ $store.state.user.username }}</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">退出</a>

@@ -1,33 +1,53 @@
 <template>
-    <div class="search">
-        <input type="text" name="searchWork" maxlength="10" size="70" placeholder="搜索职位">
-        <button type="button" class="btn btn-primary search-btn" @click="search">搜索</button>
-    </div>
-    <div class="search-hot">
-        <b>热门职位：</b>
-        <a href="">Java</a>
-        <a href="">Python</a>
-        <a href="">测试工程师</a>
-        <a href="">运维工程师</a>
-        <a href="">数据分析师</a>
-        <a href="">项目经理/主管</a>
+    <div class="serach-card">
+        <div class="search-box">
+            <input v-model="job" type="text" name="searchWork" maxlength="10" size="70" @keydown.enter="search"
+                placeholder="搜索职位">
+            <button type="button" class="btn btn-primary search-btn" @click="search">搜索</button>
+        </div>
+        <div class="search-hot">
+            <b>热门职位：</b>
+            <router-link :to="{ name: 'jobs', params: { 'jobname': 'java' } }">Java</router-link>
+            <router-link :to="{ name: 'jobs', params: { 'jobname': 'python' } }">Python</router-link>
+            <router-link :to="{ name: 'jobs', params: { 'jobname': '测试工程师' } }">测试工程师</router-link>
+            <router-link :to="{ name: 'jobs', params: { 'jobname': '运维工程师' } }">运维工程师</router-link>
+            <router-link :to="{ name: 'jobs', params: { 'jobname': '数据分析师' } }">数据分析师</router-link>
+            <router-link :to="{ name: 'jobs', params: { 'jobname': '项目经理' } }">项目经理/主管</router-link>
+        </div>
     </div>
 </template>
 
 <script>
-// import $ from 'jquery';
-import getjobs from '../api/api.js';
+import $ from 'jquery';
+// import { getjobs } from '@/api/api';
+import { useStore } from 'vuex';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
     name: 'SearchWork',
     setup() {
-        // let name = 'django';
-        // let author = 'zjh';
+        let job = ref('');
+        const store = useStore();
+        const route = useRouter();
+
         const search = () => {
-            getjobs();
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/jobs/',
+                type: 'GET',
+                data: {
+                    'jobname': job.value,
+                },
+                success: response => {
+                    console.log(response);
+                    route.push({ name: 'jobs', params: { 'jobname': job.value } });
+                }
+            });
         }
 
         return {
+            job,
+            store,
             search,
         }
     }
@@ -35,8 +55,13 @@ export default {
 </script>
 
 <style scoped>
-.search {
-    margin-top: 20px;
+.serach-card {
+    background-color: #E4F3F5;
+}
+
+.search-box {
+    /* margin-top: 20px; */
+    padding: 20px;
     text-align: center;
 }
 
@@ -48,12 +73,20 @@ input {
     line-height: 22px;
     padding: 14px 18px;
     border-radius: 12px;
+    border: 2px solid #00A6AF;
+}
+
+input:focus {
+    outline: none;
+    /* 移除点击时的默认外边框效果 */
 }
 
 .search-btn {
     font-weight: 500px;
     line-height: 28px;
     margin-left: 2px;
+    background-color: #00BEBD;
+    border: none;
 }
 
 .search-hot {
