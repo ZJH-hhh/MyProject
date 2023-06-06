@@ -17,7 +17,7 @@
                         <router-link class="nav-link" :to="{ name: 'jobs', params: { 'jobname': 'all' } }">职位</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">发布工作</a>
+                        <a class="nav-link" @click="postjob">发布工作</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav" v-if="!$store.state.user.is_login">
@@ -28,6 +28,9 @@
                         <router-link class="nav-link" href="/gigplatform/register/"
                             :to="{ name: 'register' }">注册</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" href="/gigplatform/login/" :to="{ name: 'login' }">个人中心</router-link>
+                    </li>
                 </ul>
                 <ul class="navbar-nav" v-else>
                     <li class="nav-item">
@@ -35,6 +38,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">退出</a>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" href="/gigplatform/userdetail/"
+                            :to="{ name: 'userdetail' }">个人中心</router-link>
                     </li>
                 </ul>
             </div>
@@ -46,14 +53,25 @@
 
 <script>
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
     name: "NavBar",
     setup() {
         const store = useStore();
+        const router = useRouter();
+
+        const postjob = () => {
+            if (store.state.user.is_login) {
+                router.push({ name: 'postjob' });
+            } else {
+                router.push({ name: 'login' });
+            }
+        }
 
         return {
             store,
+            postjob
         }
     }
 }
@@ -65,7 +83,7 @@ export default {
     background: linear-gradient(to right, cyan, 70%, rgb(59, 162, 123));
 }
 
-.navbar>a {
+.nav-item {
     cursor: pointer;
 }
 </style>

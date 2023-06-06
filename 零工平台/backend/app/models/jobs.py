@@ -16,3 +16,4 @@ class Jobs(models.Model):
         max_length=10, blank=True, null=True, default='')
     academic = models.CharField(
         max_length=10, blank=True, null=True, default='')
+    kind = models.CharField(max_length=10, blank=True, null=True)

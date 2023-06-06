@@ -5,6 +5,9 @@ import LoginView from '@/views/LoginView'
 import RegisterView from '@/views/RegisterView'
 import WorkList from '@/views/WorkList'
 import JobDetail from '@/views/JobDetail'
+import PostJob from '@/views/PostJob'
+import UserInfo from '@/views/UserInfo'
+import UserDetailView from '@/views/UserDetailView'
 
 const routes = [
   {
@@ -18,6 +21,11 @@ const routes = [
     component: LoginView,
   },
   {
+    path: '/gigplatform/user/',
+    name: 'userinfo',
+    component: UserInfo,
+  },
+  {
     path: '/gigplatform/register/',
     name: 'register',
     component: RegisterView,
@@ -26,6 +34,11 @@ const routes = [
     path: '/gigplatform/jobs/:jobname',
     name: 'jobs',
     component: WorkList,
+  },
+  {
+    path: '/gigplatform/postjob/',
+    name: 'postjob',
+    component: PostJob,
   },
   {
     path: '/gigplatform/404/',
@@ -40,6 +53,11 @@ const routes = [
     path: '/gigplatform/job_detail/:jobid',
     name: 'job_detail',
     component: JobDetail,
+  },
+  {
+    path: '/gigplatform/userdetail/',
+    name: 'userdetail',
+    component: UserDetailView,
   },
 ]
 

@@ -1,6 +1,7 @@
 <template>
     <div class="card">
-        <div class="card-body" v-for="(item, index) in paginatedData" :key="index">{{ item }}</div>
+        <div class="card-body" v-for="(item, index) in paginatedData" :key="index" @mouseover="getlabel(item)">{{ item }}
+        </div>
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li class="page-item">
@@ -26,11 +27,11 @@ import { ref, computed } from 'vue';
 
 export default {
     name: 'WorkKind',
-    setup() {
+    setup(props, context) {
         const currentPage = ref(1);
         const PageSize = 5;
-        const data = ref(['技术', '产品', '设计', '运营', '市场', '人力/财务/行政',
-            '高级管理', '销售', '传媒', '金融', '教育', '医疗', '贸易', '物流', '旅游']);
+        const data = ref(['技术', '产品', '设计', '运营', '服务', '市场', '人力/财务/行政',
+            '高级管理', '销售', '传媒', '金融', '教育', '医疗', '物流', '旅游']);
         const paginatedData = computed(() => {
             const startIdx = (currentPage.value - 1) * PageSize;
             const endIdx = startIdx + PageSize;
@@ -47,11 +48,16 @@ export default {
             currentPage.value = page;
         };
 
+        const getlabel = label => {
+            context.emit('updateLabel', label);
+        }
+
         return {
             currentPage,
             paginatedData,
             totalPages,
             setCurrentPage,
+            getlabel,
         };
     }
 }
