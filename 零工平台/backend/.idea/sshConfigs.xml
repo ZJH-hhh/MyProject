@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="8.130.99.147" id="632dc083-fed1-405c-9eee-92e35d56e56d" keyPath="D:\郑家豪\微信\WeChat Files\wxid_8qnnc5q10r9x22\FileStorage\File\2023-06\filezilla (1).pem" port="22" nameFormat="DESCRIPTIVE" username="root" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>
