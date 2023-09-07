@@ -1,6 +1,101 @@
 <template>
     <v-chart class="chart" :option="option" />
 </template>
+
+<script>
+import { typeScore } from '@/api/job.js';
+
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { PieChart, LineChart, BarChart } from "echarts/charts";
+import {
+    TitleComponent,
+    TooltipComponent,
+    LegendComponent,
+    ToolboxComponent,
+    GridComponent,
+} from "echarts/components";
+import VChart, { THEME_KEY } from "vue-echarts";
+
+import $ from 'jquery';
+
+use([
+    CanvasRenderer,
+    PieChart,
+    TitleComponent,
+    TooltipComponent,
+    LegendComponent,
+    ToolboxComponent,
+    GridComponent,
+    LineChart,
+    BarChart
+]);
+
+export default {
+    name: "RatingDistribution",
+    components: {
+        VChart
+    },
+    provide: {
+        [THEME_KEY]: "vintage"
+    },
+    data() {
+        const colors = ['#5470C6', '#EE6666'];
+        return {
+            option: {
+                xAxis: {
+                    type: 'category',
+                    data: [],
+                    axisLabel: {
+                        rotate: 45, // 设置标签旋转角度为45度
+                    },
+                },
+                yAxis: {
+                    type: 'value',
+                    min: 6.5
+                },
+                series: [
+                    {
+                        data: [],
+                        type: 'bar',
+                        showBackground: true,
+                        backgroundStyle: {
+                            color: 'rgba(180, 180, 180, 0.2)'
+                        }
+                    }
+                ]
+            }
+        };
+    },
+    mounted() {
+        this.getTypeScore();
+    },
+    methods: {
+        getTypeScore() {
+            typeScore().then(response => {
+                let x = [];
+                let y = [];
+                response.data.forEach(element => {
+                    x.push(element[0]);
+                    y.push(element[1]);
+                });
+                this.option.xAxis.data = x;
+                this.option.series[0].data = y;
+            })
+        }
+    }
+};
+</script>
+  
+<style scoped>
+.chart {
+    height: 600px;
+}
+</style>
+
+<!-- <template>
+    <v-chart class="chart" :option="option" />
+</template>
   
 <script>
 import { typeScore } from '@/api/job.js';
@@ -96,4 +191,4 @@ export default {
 .chart {
     height: 600px;
 }
-</style>
+</style> -->

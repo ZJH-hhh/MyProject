@@ -31,3 +31,23 @@ export function typeScore() {
         }
     })
 }
+
+export function cityScore() {
+    return $.ajax({
+        url: header + 'cityscore/',
+        type: 'GET',
+        success: response => {
+            return response;
+        }
+    })
+}
+
+export function eduScore() {
+    return $.ajax({
+        url: header + 'eduscore/',
+        type: 'GET',
+        success: response => {
+            return response;
+        }
+    })
+}

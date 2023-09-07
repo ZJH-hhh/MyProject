@@ -84,6 +84,16 @@ export const constantRoutes = [
       meta: { title: '岗位得分', icon: 'dashboard' }
     }]
   },
+  {
+    path: '/cityscore',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'cityScore',
+      component: () => import('@/views/CityScore/index'),
+      meta: { title: '城市和学历平均分', icon: 'dashboard' }
+    }]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
