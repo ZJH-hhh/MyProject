@@ -5,6 +5,7 @@ from app.views.assess import assess
 from app.views.typeScore import typeScore
 from app.views.CityScore import cityScore
 from app.views.EduScore import eduScore
+from app.views.TimePredict import timePredict
 
 urlpatterns = [
     path('test/', test, name='test'),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('typescore/', typeScore, name='typescore'),
     path('cityscore/', cityScore, name='cityscore'),
     path('eduscore/', eduScore, name='eduscore'),
+    path('timepredict/', timePredict, name='timePredict'),
 ]

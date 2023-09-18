@@ -55,16 +55,6 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/test',
-    component: Layout,
-    children: [{
-      path: 'index',
-      name: 'test',
-      component: () => import('@/views/test/index'),
-      meta: { title: 'test', icon: 'dashboard' }
-    }]
-  },
-  {
     path: '/score',
     component: Layout,
     children: [{
@@ -92,6 +82,26 @@ export const constantRoutes = [
       name: 'cityScore',
       component: () => import('@/views/CityScore/index'),
       meta: { title: '城市和学历平均分', icon: 'dashboard' }
+    }]
+  },
+  {
+    path: '/timepredict',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'timepredict',
+      component: () => import('@/views/TimePredict/index'),
+      meta: { title: '预测模型', icon: 'dashboard' }
+    }]
+  },
+  {
+    path: '/clustering',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'clustering',
+      component: () => import('@/views/Clustering/index'),
+      meta: { title: '聚类模型', icon: 'dashboard' }
     }]
   },
   // 404 page must be placed at the end !!!

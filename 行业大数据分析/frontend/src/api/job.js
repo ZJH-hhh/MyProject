@@ -51,3 +51,17 @@ export function eduScore() {
         }
     })
 }
+
+export function timePredict(city, job) {
+    return $.ajax({
+        url: header + 'timepredict/',
+        type: 'GET',
+        data: {
+            city,
+            job,
+        },
+        success: response => {
+            return response;
+        }
+    })
+}

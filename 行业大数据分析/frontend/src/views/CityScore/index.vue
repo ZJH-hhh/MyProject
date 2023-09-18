@@ -115,7 +115,7 @@ export default {
                 ],
                 series: [
                     {
-                        name: 'Precipitation(2015)',
+                        name: '学历',
                         type: 'line',
                         xAxisIndex: 1,
                         smooth: true,
@@ -125,7 +125,7 @@ export default {
                         data: []
                     },
                     {
-                        name: 'Precipitation(2016)',
+                        name: '城市',
                         type: 'line',
                         smooth: true,
                         emphasis: {
