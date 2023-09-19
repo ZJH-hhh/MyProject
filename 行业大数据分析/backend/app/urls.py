@@ -6,6 +6,7 @@ from app.views.typeScore import typeScore
 from app.views.CityScore import cityScore
 from app.views.EduScore import eduScore
 from app.views.TimePredict import timePredict
+from app.views.Clustering import clustering
 
 urlpatterns = [
     path('test/', test, name='test'),
@@ -14,4 +15,5 @@ urlpatterns = [
     path('cityscore/', cityScore, name='cityscore'),
     path('eduscore/', eduScore, name='eduscore'),
     path('timepredict/', timePredict, name='timePredict'),
+    path('clustering/', clustering, name='clustering'),
 ]

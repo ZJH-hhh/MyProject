@@ -65,3 +65,13 @@ export function timePredict(city, job) {
         }
     })
 }
+
+export function clustering() {
+    return $.ajax({
+        url: header + 'clustering/',
+        type: 'GET',
+        success: response => {
+            return response;
+        }
+    })
+}
