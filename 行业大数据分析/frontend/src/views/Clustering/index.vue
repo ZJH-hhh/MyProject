@@ -60,7 +60,7 @@ export default {
                 xAxis: {},
                 yAxis: {},
                 series: [{
-                    symbolSize: 5,
+                    symbolSize: 10,
                     data: [],
                     type: 'scatter',
                     label: {
@@ -69,6 +69,8 @@ export default {
                         formatter: '{b}' // 显示类别名称
                     },
                     itemStyle: {
+                        borderColor: 'black', // 数据点边框颜色
+                        borderWidth: 1,
                         color: function (params) {
                             // 自定义颜色，根据分类属性设置不同颜色
                             var colorMap = {
